@@ -1,0 +1,204 @@
+2026-02-21 17:24:55,351 - agent - ERROR - prompt_loader.py:28 - [load_rag_prompt]解析RAG总结提示词失败，[Errno 2] No such file or directory: 'D:\\workplace\\python\\Agent_Project_Case\\prompts/rag_summarize_prompt.txt'
+2026-02-21 20:59:34,123 - agent - ERROR - file_handler.py:35 - [listdir_with_allowed_type]data不是文件夹
+2026-02-21 20:59:34,123 - agent - ERROR - file_handler.py:10 - [md5计算]文件txt不存在
+2026-02-21 20:59:34,124 - agent - INFO - vector_store.py:76 - [加载知识库]文件txt为空，跳过
+2026-02-21 20:59:34,124 - agent - ERROR - file_handler.py:10 - [md5计算]文件pdf不存在
+2026-02-21 20:59:34,124 - agent - INFO - vector_store.py:76 - [加载知识库]文件pdf为空，跳过
+2026-02-21 21:01:38,209 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫地机器人100问.pdf添加到知识库失败，错误信息为：`pypdf` package not found, please install it with `pip install pypdf`
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\parsers\pdf.py", line 359, in lazy_parse
+    import pypdf
+ModuleNotFoundError: No module named 'pypdf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 58, in get_file_documents
+    return pdf_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 45, in pdf_loader
+    return PyPDFLoader(filepath, passwd).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_core\document_loaders\base.py", line 43, in load
+    return list(self.lazy_load())
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\pdf.py", line 305, in lazy_load
+    yield from self.parser.lazy_parse(blob)
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\parsers\pdf.py", line 361, in lazy_parse
+    raise ImportError(
+        "`pypdf` package not found, please install it with `pip install pypdf`"
+    )
+ImportError: `pypdf` package not found, please install it with `pip install pypdf`
+2026-02-21 21:01:38,218 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫地机器人100问2.txt添加到知识库失败，错误信息为：Error loading D:\workplace\python\Agent_Project_Case\data\扫地机器人100问2.txt
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 43, in lazy_load
+    text = f.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xab in position 4: illegal multibyte sequence
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepath).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_core\document_loaders\base.py", line 43, in load
+    return list(self.lazy_load())
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 56, in lazy_load
+    raise RuntimeError(f"Error loading {self.file_path}") from e
+RuntimeError: Error loading D:\workplace\python\Agent_Project_Case\data\扫地机器人100问2.txt
+2026-02-21 21:01:38,219 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫拖一体机器人100问.txt添加到知识库失败，错误信息为：Error loading D:\workplace\python\Agent_Project_Case\data\扫拖一体机器人100问.txt
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 43, in lazy_load
+    text = f.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xab in position 4: illegal multibyte sequence
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepath).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_core\document_loaders\base.py", line 43, in load
+    return list(self.lazy_load())
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 56, in lazy_load
+    raise RuntimeError(f"Error loading {self.file_path}") from e
+RuntimeError: Error loading D:\workplace\python\Agent_Project_Case\data\扫拖一体机器人100问.txt
+2026-02-21 21:01:38,222 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\故障排除.txt添加到知识库失败，错误信息为：Error loading D:\workplace\python\Agent_Project_Case\data\故障排除.txt
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 43, in lazy_load
+    text = f.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xab in position 2: illegal multibyte sequence
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepath).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_core\document_loaders\base.py", line 43, in load
+    return list(self.lazy_load())
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 56, in lazy_load
+    raise RuntimeError(f"Error loading {self.file_path}") from e
+RuntimeError: Error loading D:\workplace\python\Agent_Project_Case\data\故障排除.txt
+2026-02-21 21:01:38,224 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\维护保养.txt添加到知识库失败，错误信息为：Error loading D:\workplace\python\Agent_Project_Case\data\维护保养.txt
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 43, in lazy_load
+    text = f.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xab in position 4: illegal multibyte sequence
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepath).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_core\document_loaders\base.py", line 43, in load
+    return list(self.lazy_load())
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 56, in lazy_load
+    raise RuntimeError(f"Error loading {self.file_path}") from e
+RuntimeError: Error loading D:\workplace\python\Agent_Project_Case\data\维护保养.txt
+2026-02-21 21:01:38,226 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\选购指南.txt添加到知识库失败，错误信息为：Error loading D:\workplace\python\Agent_Project_Case\data\选购指南.txt
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 43, in lazy_load
+    text = f.read()
+UnicodeDecodeError: 'gbk' codec can't decode byte 0xab in position 2: illegal multibyte sequence
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepath).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_core\document_loaders\base.py", line 43, in load
+    return list(self.lazy_load())
+  File "D:\workplace\python\Agent_Project_Case\.venv\Lib\site-packages\langchain_community\document_loaders\text.py", line 56, in lazy_load
+    raise RuntimeError(f"Error loading {self.file_path}") from e
+RuntimeError: Error loading D:\workplace\python\Agent_Project_Case\data\选购指南.txt
+2026-02-21 21:04:08,003 - agent - INFO - vector_store.py:89 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫地机器人100问.pdf已添加到知识库中
+2026-02-21 21:04:08,004 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫地机器人100问2.txt添加到知识库失败，错误信息为：name 'filepathm' is not defined
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepathm, encoding = "utf-8").load()
+                      ^^^^^^^^^
+NameError: name 'filepathm' is not defined. Did you mean: 'filepath'?
+2026-02-21 21:04:08,005 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫拖一体机器人100问.txt添加到知识库失败，错误信息为：name 'filepathm' is not defined
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepathm, encoding = "utf-8").load()
+                      ^^^^^^^^^
+NameError: name 'filepathm' is not defined. Did you mean: 'filepath'?
+2026-02-21 21:04:08,006 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\故障排除.txt添加到知识库失败，错误信息为：name 'filepathm' is not defined
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepathm, encoding = "utf-8").load()
+                      ^^^^^^^^^
+NameError: name 'filepathm' is not defined. Did you mean: 'filepath'?
+2026-02-21 21:04:08,007 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\维护保养.txt添加到知识库失败，错误信息为：name 'filepathm' is not defined
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepathm, encoding = "utf-8").load()
+                      ^^^^^^^^^
+NameError: name 'filepathm' is not defined. Did you mean: 'filepath'?
+2026-02-21 21:04:08,007 - agent - ERROR - vector_store.py:92 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\选购指南.txt添加到知识库失败，错误信息为：name 'filepathm' is not defined
+Traceback (most recent call last):
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 74, in load_documents
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\workplace\python\Agent_Project_Case\rag\vector_store.py", line 56, in get_file_documents
+    return txt_loader(read_path)
+  File "D:\workplace\python\Agent_Project_Case\utils\file_handler.py", line 48, in txt_loader
+    return TextLoader(filepathm, encoding = "utf-8").load()
+                      ^^^^^^^^^
+NameError: name 'filepathm' is not defined. Did you mean: 'filepath'?
+2026-02-21 21:05:20,856 - agent - INFO - vector_store.py:70 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫地机器人100问.pdf已存在知识库中，跳过
+2026-02-21 21:05:26,350 - agent - INFO - vector_store.py:89 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫地机器人100问2.txt已添加到知识库中
+2026-02-21 21:05:33,895 - agent - INFO - vector_store.py:89 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\扫拖一体机器人100问.txt已添加到知识库中
+2026-02-21 21:05:46,263 - agent - INFO - vector_store.py:89 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\故障排除.txt已添加到知识库中
+2026-02-21 21:05:54,360 - agent - INFO - vector_store.py:89 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\维护保养.txt已添加到知识库中
+2026-02-21 21:06:02,053 - agent - INFO - vector_store.py:89 - [加载知识库]文件D:\workplace\python\Agent_Project_Case\data\选购指南.txt已添加到知识库中

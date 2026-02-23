@@ -1,0 +1,8 @@
+get_weather:
+    PRIVATE_KEY_STR: |
+        -----BEGIN PRIVATE KEY-----
+        MC4CAQAwBQYDK2VwBCIEIKJhI8P9+2B1PZXJJTGfC/y0tVCtPKwIOZ35s9kDNkmW
+        -----END PRIVATE KEY-----
+    PROJECT_ID: "3G2D4R7MVA"
+    KEY_ID: "KHWF87KG6A"
+    API_HOST: "nf44uajftr.re.qweatherapi.com"

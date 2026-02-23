@@ -1,0 +1,29 @@
+2026-02-23 21:40:52,078 - agent - ERROR - agent_tools.py:52 - JWT 生成失败: module 'jwt' has no attribute 'encode'
+2026-02-23 21:44:28,315 - agent - ERROR - agent_tools.py:52 - JWT 生成失败: module 'jwt' has no attribute 'encode'
+2026-02-23 21:46:12,038 - agent - ERROR - agent_tools.py:93 - Weather Tool 运行异常: Expecting value: line 1 column 1 (char 0)
+2026-02-23 21:47:41,924 - agent - ERROR - agent_tools.py:74 - GeoAPI 返回了非 JSON 内容: 
+2026-02-23 21:49:32,913 - agent - ERROR - agent_tools.py:49 - JWT 签名失败: Not a public or private key
+2026-02-23 21:52:56,538 - agent - ERROR - agent_tools.py:69 - HTTP错误码: 404, 内容: 
+2026-02-23 21:55:35,245 - agent - ERROR - agent_tools.py:69 - HTTP错误码: 404, 内容: 
+2026-02-23 21:56:58,025 - agent - INFO - agent_tools.py:74 - 请求URL: https://geoapi.qweather.com/v2/city/lookup?location=%E5%8C%97%E4%BA%AC
+2026-02-23 21:56:58,025 - agent - INFO - agent_tools.py:75 - 请求Headers: {'Authorization': 'Bearer eyJhbGciOiJFZERTQSIsImtpZCI6IktIV0Y4N0tHNkEiLCJ0eXAiOiJKV1QifQ.eyJpYXQiOjE3NzE4NTQ5ODcsImV4cCI6MTc3MTg1NTkxNywic3ViIjoiM0cyRDRSN01WQSJ9.6JD5kNYcgoxka2bt-Fj94jJJy-0LP97p-0jmLd243qi_iqtdy9jwqY_cy5G4QlYMRR7fLdiHkkmkjSYSdSmLAw'}
+2026-02-23 21:56:58,025 - agent - INFO - agent_tools.py:76 - 请求Params: {'location': '北京'}
+2026-02-23 21:56:58,025 - agent - INFO - agent_tools.py:77 - 响应状态码: 404
+2026-02-23 21:56:58,025 - agent - INFO - agent_tools.py:78 - 响应内容: 
+2026-02-23 22:03:17,728 - agent - ERROR - agent_tools.py:75 - 接口返回非JSON。状态码: 404, 内容: 
+2026-02-23 22:05:32,768 - agent - ERROR - agent_tools.py:99 - Weather Tool 运行异常: HTTPSConnectionPool(host='abcxyz.qweatherapi.com', port=443): Max retries exceeded with url: /v2/city/lookup?location=%E5%8C%97%E4%BA%AC (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+2026-02-23 22:06:13,597 - agent - ERROR - agent_tools.py:75 - 接口返回非JSON。状态码: 404, 内容: 
+2026-02-23 22:10:07,966 - agent - ERROR - agent_tools.py:75 - 接口返回非JSON。状态码: 404, 内容: 
+2026-02-23 22:14:37,306 - agent - ERROR - agent_tools.py:74 - 接口返回非JSON。状态码: 404, 内容: 
+2026-02-23 23:39:56,619 - agent - INFO - middleware.py:34 - [log_before_model]即将调用模型，带有1条消息
+2026-02-23 23:39:56,620 - agent - DEBUG - middleware.py:36 - [log_before_model]消息列表：HumanMessage | 你好
+2026-02-23 23:42:34,746 - agent - INFO - middleware.py:34 - [log_before_model]即将调用模型，带有1条消息
+2026-02-23 23:42:34,747 - agent - DEBUG - middleware.py:36 - [log_before_model]消息列表：HumanMessage | 你好
+2026-02-23 23:42:52,913 - agent - INFO - middleware.py:34 - [log_before_model]即将调用模型，带有1条消息
+2026-02-23 23:42:52,913 - agent - DEBUG - middleware.py:36 - [log_before_model]消息列表：HumanMessage | 你好
+2026-02-23 23:43:01,239 - agent - INFO - middleware.py:34 - [log_before_model]即将调用模型，带有1条消息
+2026-02-23 23:43:01,240 - agent - DEBUG - middleware.py:36 - [log_before_model]消息列表：HumanMessage | 你好
+2026-02-23 23:43:10,451 - agent - INFO - middleware.py:34 - [log_before_model]即将调用模型，带有1条消息
+2026-02-23 23:43:10,452 - agent - DEBUG - middleware.py:36 - [log_before_model]消息列表：HumanMessage | 你好
+2026-02-23 23:43:17,639 - agent - INFO - middleware.py:34 - [log_before_model]即将调用模型，带有1条消息
+2026-02-23 23:43:17,639 - agent - DEBUG - middleware.py:36 - [log_before_model]消息列表：HumanMessage | 你好
