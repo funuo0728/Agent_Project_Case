@@ -1,0 +1,24 @@
+# ==================== 核心框架 ====================
+streamlit>=1.38.0
+
+# LangChain 全家桶（必须分开写，防止版本冲突）
+langchain>=0.3.7
+langchain-core>=0.3.15
+langchain-community>=0.3.7
+langchain-chroma>=0.1.4
+langchain-text-splitters>=0.3.0
+langgraph>=0.2.38
+
+# 向量数据库 & 嵌入模型
+chromadb>=0.5.16
+dashscope>=1.20.0
+
+# 文档加载器
+pypdf>=5.0.0
+
+# 配置 & 工具依赖
+PyYAML>=6.0.2
+requests>=2.32.0
+PyJWT[crypto]>=2.9.0
+cryptography>=43.0.0
+python-dotenv>=1.0.1
