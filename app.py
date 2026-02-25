@@ -1,67 +1,10 @@
 import time
-import os
-import json
-from datetime import datetime
-
 import streamlit as st
 from agent.react_agent import ReactAgent
+from session_manager import SessionManager   # ← 新增导入
 
 
-# ==================== 会话管理工具函数 ====================
-def generate_session_name():
-    return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-
-def save_session():
-    if "current_session" not in st.session_state:
-        return
-    try:
-        session_data = {
-            "current_session": st.session_state.current_session,
-            "messages": st.session_state.messages,
-        }
-        os.makedirs("sessions", exist_ok=True)
-        with open(f"sessions/{st.session_state.current_session}.json", "w", encoding="UTF-8") as f:
-            json.dump(session_data, f, ensure_ascii=False, indent=4)
-    except Exception as e:
-        st.toast(f"💾 保存失败: {e}", icon="⚠️")
-
-
-def load_sessions():
-    if not os.path.exists("sessions"):
-        return []
-    session_list = []
-    for file in os.listdir("sessions"):
-        if file.endswith(".json"):
-            session_list.append(file[:-5])
-    return sorted(session_list, reverse=True)
-
-
-def load_session(session_name):
-    try:
-        if os.path.exists(f"sessions/{session_name}.json"):
-            if st.session_state.messages:
-                save_session()
-            with open(f"sessions/{session_name}.json", "r", encoding="UTF-8") as f:
-                data = json.load(f)
-                st.session_state.current_session = session_name
-                st.session_state.messages = data.get("messages", [])
-    except Exception as e:
-        st.error(f"加载会话失败: {e}")
-
-
-def delete_session(session_name):
-    try:
-        if os.path.exists(f"sessions/{session_name}.json"):
-            os.remove(f"sessions/{session_name}.json")
-            if st.session_state.current_session == session_name:
-                st.session_state.messages = []
-                st.session_state.current_session = generate_session_name()
-    except Exception as e:
-        st.error(f"删除会话失败: {e}")
-
-
-# ==================== 流式输出捕获 ====================
+# ==================== 流式输出捕获（保持不变） ====================
 def capture(generator, cache_list):
     for chunk in generator:
         cache_list.append(chunk)
@@ -78,33 +21,43 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+st.title("扫地机器人智能客服")
+st.caption("RAG + ReAct Agent 多工具智能客服系统")
+
 # ==================== 初始化 ====================
-# Agent 必须在这里初始化（解决 "st.session_state has no attribute 'agent'"）
 if "agent" not in st.session_state:
     st.session_state.agent = ReactAgent()
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+if "session_manager" not in st.session_state:
+    st.session_state.session_manager = SessionManager()
+
 if "current_session" not in st.session_state:
-    st.session_state.current_session = generate_session_name()
+    st.session_state.current_session = st.session_state.session_manager.generate_session_name()
 
 
-# ====================== 侧边栏 ======================
+# ====================== 侧边栏（大幅简化） ======================
 with st.sidebar:
     st.subheader("AI控制面板")
 
     # 新建会话
     if st.button("新建会话", width="stretch", icon="✏️") and st.session_state.messages:
-        save_session()
-        st.session_state.messages = []
-        st.session_state.current_session = generate_session_name()
-        save_session()
-        st.rerun()
+        error = st.session_state.session_manager.save_session(
+            st.session_state.current_session, st.session_state.messages
+        )
+        if error:
+            st.error(error)
+        else:
+            st.session_state.messages = []
+            st.session_state.current_session = st.session_state.session_manager.generate_session_name()
+            st.rerun()
 
     st.divider()
     st.text("会话历史")
 
-    for session in load_sessions():
+    for session in st.session_state.session_manager.load_sessions():
         col1, col2 = st.columns([4, 1])
         with col1:
             if st.button(
@@ -114,11 +67,26 @@ with st.sidebar:
                 type="primary" if session == st.session_state.current_session else "secondary",
                 use_container_width=True
             ):
-                load_session(session)
-                st.rerun()
+                new_current, new_messages, error = st.session_state.session_manager.switch_to_session(
+                    session,
+                    st.session_state.messages,
+                    st.session_state.current_session
+                )
+                if error:
+                    st.error(error)
+                else:
+                    st.session_state.current_session = new_current
+                    st.session_state.messages = new_messages
+                    st.rerun()
+
         with col2:
             if st.button("", key=f"delete_{session}", icon="❌️", help="删除此会话"):
-                delete_session(session)
+                error = st.session_state.session_manager.delete_session(session)
+                if error:
+                    st.error(error)
+                elif st.session_state.current_session == session:
+                    st.session_state.messages = []
+                    st.session_state.current_session = st.session_state.session_manager.generate_session_name()
                 st.rerun()
 
     st.divider()
@@ -126,9 +94,6 @@ with st.sidebar:
 
 
 # ====================== 主界面 ======================
-st.title("扫地机器人智能客服")
-st.caption("RAG + ReAct Agent 多工具智能客服系统")
-
 for message in st.session_state.messages:
     if message["role"] == "user":
         st.chat_message("user").write(message["content"])
@@ -152,6 +117,10 @@ if prompt:
             "content": response_messages[-1]
         })
 
-    if st.session_state.messages:
-        save_session()
-        st.rerun()
+    # 保存会话（错误也在前端显示）
+    error = st.session_state.session_manager.save_session(
+        st.session_state.current_session, st.session_state.messages
+    )
+    if error:
+        st.error(error)
+    st.rerun()
