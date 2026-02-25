@@ -1,7 +1,7 @@
 import time
 import streamlit as st
 from agent.react_agent import ReactAgent
-from session_manager import SessionManager   # ← 新增导入
+from utils.session_manager import SessionManager   # ← 新增导入
 
 
 # ==================== 流式输出捕获（保持不变） ====================
