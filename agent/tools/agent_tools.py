@@ -44,7 +44,7 @@ def generate_qweather_jwt():
         return None
 
 
-# @tool(description="获取天气信息，已消息字符串返回")
+@tool(description="获取天气信息，已消息字符串返回")
 def get_weather(city: str) -> str:
     token = generate_qweather_jwt()
     if not token:
