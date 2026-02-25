@@ -3,3 +3,4 @@
 19420yjsan.hub
 *.log
 __pycache__/
+.env
